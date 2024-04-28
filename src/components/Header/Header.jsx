@@ -45,7 +45,7 @@ export default function Header() {
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link to="/" className="flex items-center">
             <img
-              src="src\images\VOW-logo.png"
+              src="src\images\ECI_Logo.png"
               className="mr-3 h-12"
               alt="HomeLogo"
             />
@@ -69,7 +69,11 @@ export default function Header() {
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <Link to="/votingResult">
-                <img src="" className=" h-16" alt="LogoVotingResult" />
+                <img
+                  src="src\images\ElectionResult_Logo.png"
+                  className=" h-16"
+                  alt="LogoVotingResult"
+                />
               </Link>
               <Link to="/voting">
                 <img
@@ -79,7 +83,11 @@ export default function Header() {
                 />
               </Link>
               <Link to="/voterRegistration">
-                <img src="" className=" h-16" alt="voterRegistration" />
+                <img
+                  src="src\images\registerToVote.png"
+                  className=" h-16"
+                  alt="voterRegistration"
+                />
               </Link>
             </ul>
           </div>

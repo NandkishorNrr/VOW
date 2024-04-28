@@ -12,6 +12,7 @@ import Home from "./components/Home/Home.jsx";
 import VotingResult from "./components/VotingResult/VotingResult.jsx";
 import Voting from "./components/Voting/Voting.jsx";
 import VoterRegistration from "./components/VoterRegistrartion/VoterRegistration.jsx";
+import EVM from "./components/Voting/EVM.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path="" element={<Home />} />
       <Route path="votingResult" element={<VotingResult />} />
       <Route path="voting" element={<Voting />} />
+      <Route path="/voting-page/:adharNo" element={<EVM />} />
       <Route path="voterRegistration" element={<VoterRegistration />} />
     </Route>
   )
