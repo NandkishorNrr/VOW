@@ -45,7 +45,7 @@ export default function Header() {
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
           <Link to="/" className="flex items-center">
             <img
-              src="https://photos.google.com/album/AF1QipMNBqirGxP9QCZismFLyYZxy1MbSCJY8p00zRN5/photo/AF1QipOcOrB7X-pIruGSsdtB7nST8xPO1S6kJba1WQnF"
+              src="src\images\ECI_Logo.png"
               className="mr-3 h-12"
               alt="HomeLogo"
             />
