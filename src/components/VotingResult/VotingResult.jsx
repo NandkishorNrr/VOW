@@ -25,9 +25,9 @@ export default function Home() {
       <div className="mx-auto w-full max-w-7xl">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="flex justify-center">
-            <div className="bg-orange-400 p-3 rounded-lg md:flex md:justify-between table-container">
+            <div className="bg-orange-400 p-3 my-6 rounded-lg md:flex md:justify-between table-container">
               <div className="overflow-auto">
-                <div className="overflow-y-auto max-h-[400px]">
+                <div className="overflow-y-auto max-h-[425px]">
                   <table className="w-full rounded-lgborder-collapse border border-gray-700">
                     <thead className="sticky top-0 bg-orange-200 rounded-lg">
                       <tr>

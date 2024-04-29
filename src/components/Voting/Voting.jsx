@@ -1,4 +1,3 @@
-// Voting.jsx (formerly Register.jsx)
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import dummyPeople from "../../data/dummyPeople";
@@ -10,7 +9,9 @@ function Voting() {
   const [lastName, setLastName] = useState("");
   const [fullName, setFullName] = useState("");
   const [adharNo, setAdharNo] = useState("");
+  const [adharNoError, setAdharNoError] = useState("");
   const [voterId, setVoterId] = useState("");
+  const [voterIdError, setVoterIdError] = useState("");
   const [address, setAddress] = useState("");
   const [otp, setOtp] = useState("");
   const [isVerified, setIsVerified] = useState(false);
@@ -32,11 +33,27 @@ function Voting() {
   };
 
   const handleAdharNoChange = (e) => {
-    setAdharNo(e.target.value);
+    const inputValue = e.target.value;
+    // Validate if input is a 12-digit number
+    if (/^\d{0,12}$/.test(inputValue) || inputValue === "") {
+      setAdharNo(inputValue);
+      setAdharNoError(""); // Clear error message
+    } else {
+      setAdharNoError("Adhar No must be a 12-digit number."); // Set error message
+    }
   };
 
   const handleVoterIdChange = (e) => {
-    setVoterId(e.target.value);
+    const inputValue = e.target.value.toUpperCase();
+    // Validate if input is in the format "AAA1234567" (3 capital letters followed by 7 digits)
+    if (/^[A-Z]{0,3}\d{0,7}$/.test(inputValue) || inputValue === "") {
+      setVoterId(inputValue);
+      setVoterIdError(""); // Clear error message
+    } else {
+      setVoterIdError(
+        "Invalid Voter ID format. Please enter 3 capital letters followed by 7 digits."
+      ); // Set error message
+    }
   };
 
   const handleAddressChange = (e) => {
@@ -68,7 +85,7 @@ function Voting() {
         setLinkageMessage("Adhar and Voter ID not linked");
       }
     } else {
-      setLinkageMessage("Invalid Adhar Number");
+      setLinkageMessage("Invalid Adhar no. or Voter ID");
     }
   };
 
@@ -127,8 +144,8 @@ function Voting() {
   }, [isOtpSent, isVerified, timer]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="grid grid-cols-1 w-2/3 h-2/3 bg-orange-300 bg-opacity-50 rounded-lg p-8 md:grid-cols-2">
+    <div className="flex justify-center items-center">
+      <div className=" grid grid-cols-1 w-2/3 h-2/3 m-16 bg-orange-300 bg-opacity-50 rounded-lg p-8 md:grid-cols-2">
         <div className="p-6 mr-2 sm:rounded-lg">
           <img src="src/images/VOW-voting.png" alt="" />
         </div>
@@ -147,10 +164,15 @@ function Voting() {
                   placeholder="Adhar No"
                   onChange={handleAdharNoChange}
                   value={adharNo}
-                  required
-                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
+                  className={`w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none ${
+                    adharNoError ? "border-red-500" : ""
+                  }`}
                 />
+                {adharNoError && (
+                  <p className="text-red-500 text-sm mt-1">{adharNoError}</p>
+                )}
               </div>
+
               <div className="flex flex-col mt-2">
                 <label htmlFor="voterId">Voter ID</label>
                 <input
@@ -160,9 +182,13 @@ function Voting() {
                   placeholder="Voter ID"
                   onChange={handleVoterIdChange}
                   value={voterId}
-                  required
-                  className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
+                  className={`w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none ${
+                    voterIdError ? "border-red-500" : ""
+                  }`}
                 />
+                {voterIdError && (
+                  <p className="text-red-500 text-sm mt-1">{voterIdError}</p>
+                )}
               </div>
               <button
                 type="button"
@@ -184,7 +210,6 @@ function Voting() {
                 placeholder="OTP"
                 onChange={handleOtpChange}
                 value={otp}
-                required
                 className="w-100 mt-2 py-3 px-3 rounded-lg bg-white border border-gray-400 text-gray-800 font-semibold focus:border-orange-500 focus:outline-none"
               />
               <p className={`text-lg max-w-fit p-4 ${otpErrorCls} `}>
